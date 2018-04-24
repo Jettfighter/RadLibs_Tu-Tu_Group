@@ -1,0 +1,7 @@
+  <form action="/getWord" method="POST">
+  <% @words.each do |word| %>
+  <label>Enter a <%= word%>: </label>
+  <input type="text" name="message">
+  <% end %>
+  <button type="submit">Submit!</button>
+  </form>
