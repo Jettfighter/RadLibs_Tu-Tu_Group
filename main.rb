@@ -15,7 +15,6 @@ post "/upload" do
   return "The file was successfully uploaded!"
 end
 
-<<<<<<< HEAD
 get "/test" do
   erb :Home
 end
@@ -23,7 +22,6 @@ end
 get "/home" do
 end
 
-=======
 get "/:name" do |name|
   @name = name
   libs = Dir.entries("uploads")
@@ -79,5 +77,4 @@ post "/:name" do |name|
     return "I actually don't know how you got here. Good job, you broke my code"
   end
   return madlib
->>>>>>> 198df29ae7909ee421c9a2078cc80bb97945488e
 end
