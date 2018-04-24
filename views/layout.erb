@@ -13,12 +13,17 @@
     <h1><%= @title %></h1>
 
     <div class="container">
-      <%= yield %>
       <div id="banner">
         <h1>!!!Mad Libs!!!</h1>  
       </div>
 
       <div id="centerfold">
+        <%= yield %>
+        
+        <div id="files" class="files">
+        
+        </div>
+
       </div>
     </div>
   </body>
