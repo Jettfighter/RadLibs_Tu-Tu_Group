@@ -15,6 +15,7 @@ post "/upload" do
   return "The file was successfully uploaded!"
 end
 
+<<<<<<< HEAD
 get "/:name" do |name|
   @name = name
   libs = Dir.entries("uploads")
@@ -34,4 +35,28 @@ get "/:name" do |name|
     return erb :madlib
   end
   return "How did you get here? You should have just clicked a link. Unless we messed up"
+=======
+libs = Dir.entries("uploads")
+libs.shift(2)
+libs.map { |x| x.chomp!(".txt") }
+
+@words = []
+
+get "/testing" do
+  @words = ["verb", "adjective", "noun", "verb"]
+  erb :madlib
+>>>>>>> Got form thing done
+end
+Combined = []
+
+post "/testing" do
+  i = 1
+  l = params.size
+  until i > l
+    message = "message#{i}"
+    p params[message.to_sym]
+    Combined << params[message.to_sym]
+    i += 1
+  end
+  Combined.join("<br>")
 end
