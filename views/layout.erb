@@ -1,16 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="/main.css" rel="stylesheet">
   <title>Rad Lib</title>
-</head>
-<body>
-  <h1><%= @title %></h1>
-  <div class="container">
-    <%= yield %>
-  </div>
-</body>
+    </head>
+  <body
+
+    <h1><%= @title %></h1>
+
+    <div class="container">
+      <%= yield %>
+      <div id="banner">
+        <h1>!!!Mad Libs!!!</h1>  
+      </div>
+
+      <div id="centerfold">
+      </div>
+    </div>
+  </body>
+    <footer>
+      <p>Copyright &copy;2018 Noah Handley</p>
+    </footer>
 </html>
