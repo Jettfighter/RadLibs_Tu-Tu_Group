@@ -12,7 +12,7 @@ post "/upload" do
   File.open("uploads/" + params["myfile"][:filename], "w") do |f|
     f.write(params["myfile"][:tempfile].read)
   end
-  return "The file was successfully uploaded!"
+  erb "The file was successfully uploaded!"
 end
 
 get "/:name" do |name|
@@ -32,7 +32,7 @@ get "/:name" do |name|
     end
     return erb :madlib
   end
-  return "How did you get here? You should have just clicked a link. Unless we messed up"
+  return erb "How did you get here? You should have just clicked a link. Unless we messed up"
 end
 
 post "/:name" do |name|
@@ -58,16 +58,8 @@ post "/:name" do |name|
         madlib += d
       end
     end
-    # Combined = []
-    # i = 1
-    # l = params.size
-    # until i > l
-    #   message = "message#{i}"
-    #   Combined << params[message.to_sym]
-    #   i += 1
-    # end
   else
-    return "I actually don't know how you got here. Good job, you broke my code"
+    return erb "I actually don't know how you got here. Good job, you broke my code"
   end
-  return madlib
+  erb madlib
 end
