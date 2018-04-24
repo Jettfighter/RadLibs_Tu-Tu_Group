@@ -13,3 +13,7 @@ post "/upload" do
   end
   return "The file was successfully uploaded!"
 end
+
+get "/test" do
+  erb :Home
+end
