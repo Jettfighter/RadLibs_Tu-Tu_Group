@@ -15,7 +15,6 @@ post "/upload" do
   return "The file was successfully uploaded!"
 end
 
-<<<<<<< HEAD
 get "/:name" do |name|
   @name = name
   libs = Dir.entries("uploads")
@@ -30,33 +29,45 @@ get "/:name" do |name|
       data = data[1...data.size - 1] # remove the first ] and last [
       data = data.split(/\].*?\[/) # turn data into an array of the needed words
       @words = data
-      p @words
     end
     return erb :madlib
   end
   return "How did you get here? You should have just clicked a link. Unless we messed up"
-=======
-libs = Dir.entries("uploads")
-libs.shift(2)
-libs.map { |x| x.chomp!(".txt") }
-
-@words = []
-
-get "/testing" do
-  @words = ["verb", "adjective", "noun", "verb"]
-  erb :madlib
->>>>>>> Got form thing done
 end
-Combined = []
 
-post "/testing" do
-  i = 1
-  l = params.size
-  until i > l
-    message = "message#{i}"
-    p params[message.to_sym]
-    Combined << params[message.to_sym]
-    i += 1
+post "/:name" do |name|
+  libs = Dir.entries("uploads")
+  libs.shift(2)
+  libs.map { |x| x.chomp!(".txt") }
+
+  madlib = nil
+  if (libs.include?(name))
+    data = nil
+    File.open("uploads/#{name}.txt", "r") do |f|
+      data = f.read
+      data = data.split(/(\[.*?\])/)
+    end
+
+    madlib = ""
+    i = 0
+    data.each do |d|
+      if (d.start_with?("[") && d.end_with?("]"))
+        madlib += params["message#{i}".to_sym]
+        i += 1
+      else
+        madlib += d
+      end
+    end
+    # Combined = []
+    # i = 1
+    # l = params.size
+    # until i > l
+    #   message = "message#{i}"
+    #   Combined << params[message.to_sym]
+    #   i += 1
+    # end
+  else
+    return "I actually don't know how you got here. Good job, you broke my code"
   end
-  Combined.join("<br>")
+  return madlib
 end
