@@ -15,11 +15,23 @@ post "/upload" do
   return "The file was successfully uploaded!"
 end
 
-libs = Dir.entries("uploads")
-libs.shift(2)
-libs.map { |x| x.chomp!(".txt") }
-
 get "/:name" do |name|
-  p name
-  erb :madlib
+  @name = name
+  libs = Dir.entries("uploads")
+  libs.shift(2)
+  libs.map { |x| x.chomp!(".txt") }
+
+  @words = nil
+  if (libs.include?(name))
+    File.open("uploads/#{name}.txt", "r") do |f|
+      data = f.read
+      data = data.slice(/\[.*\]/) # ignore any text before the first required word and after the last
+      data = data[1...data.size - 1] # remove the first ] and last [
+      data = data.split(/\].*?\[/) # turn data into an array of the needed words
+      @words = data
+      p @words
+    end
+    return erb :madlib
+  end
+  return "How did you get here? You should have just clicked a link. Unless we messed up"
 end
