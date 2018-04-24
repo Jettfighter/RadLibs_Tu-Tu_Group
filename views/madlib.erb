@@ -1,7 +1,14 @@
-  <form action="/getWord" method="POST">
-  <% @words.each do |word| %>
-  <label>Enter a <%= word%>: </label>
-  <input type="text" name="message">
-  <% end %>
-  <button type="submit">Submit!</button>
-  </form>
+
+  
+<form action="/<%=@name%>" method="POST">
+<%i=0%>
+<% @words.each do |word| %>
+<%message = "message#{i}"%>
+<label>Enter a <%= word%>: </label>
+<input type="text" name="<%=message%>">
+<%i+=1%>
+<% end %> 
+<button type="submit">Submit!</button>
+</form>
+
+  
