@@ -15,6 +15,13 @@ post "/upload" do
   erb "The file was successfully uploaded!"
 end
 
+get "/test" do
+  erb :Home
+end
+
+get "/home" do
+end
+
 get "/:name" do |name|
   @name = name
   libs = Dir.entries("uploads")
