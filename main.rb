@@ -4,6 +4,7 @@ get "/" do
 end
 
 get "/upload" do
+  @title = "File uploader"
   erb :upload
 end
 
@@ -14,6 +15,16 @@ post "/upload" do
   return "The file was successfully uploaded!"
 end
 
+<<<<<<< HEAD
 get "/test" do
   erb :Home
+=======
+libs = Dir.entries("uploads")
+libs.shift(2)
+libs.map { |x| x.chomp!(".txt") }
+
+get "/:name" do |name|
+  p name
+  erb :madlib
+>>>>>>> dce29c13660a7b3cb2fd79999b063e18c027fe24
 end
