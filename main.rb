@@ -12,7 +12,7 @@ post "/upload" do
   File.open("uploads/" + params["myfile"][:filename], "w") do |f|
     f.write(params["myfile"][:tempfile].read)
   end
-  erb "The file was successfully uploaded!"
+  return erb "The file was successfully uploaded!"
 end
 
 get "/test" do
@@ -20,6 +20,22 @@ get "/test" do
 end
 
 get "/home" do
+  erb :Home
+
+  files = []
+  d = Dir.entries("./uploads")
+  d.shift(2)
+  d.map { |file| files[files.size] = file.chomp!(".txt") }
+
+  str = "<div id=\"links\"><ul>"
+
+  files.each do |x|
+    str += "<li><a href=\"#{x}\">#{x}</a></li>"
+  end
+
+  str += "</ul></div>"
+
+  return erb str
 end
 
 get "/:name" do |name|
@@ -39,7 +55,7 @@ get "/:name" do |name|
     end
     return erb :madlib
   end
-  return erb "How did you get here? You should have just clicked a link. Unless we messed up"
+  return "How did you get here? You should have just clicked a link. Unless we messed up"
 end
 
 post "/:name" do |name|
@@ -65,8 +81,16 @@ post "/:name" do |name|
         madlib += d
       end
     end
+    # Combined = []
+    # i = 1
+    # l = params.size
+    # until i > l
+    #   message = "message#{i}"
+    #   Combined << params[message.to_sym]
+    #   i += 1
+    # end
   else
-    return erb "I actually don't know how you got here. Good job, you broke my code"
+    return "I actually don't know how you got here. Good job, you broke my code"
   end
-  erb madlib
+  return erb madlib
 end
