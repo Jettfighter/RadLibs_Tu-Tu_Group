@@ -1,7 +1,9 @@
-require "sinatra"
+#Tu-Tu Group:
+#Paige Klima
+#Elijah Schaurmann
+#Jett Tripp
 
-get "/" do
-end
+require "sinatra"
 
 get "/upload" do
   @title = "File uploader"
@@ -15,11 +17,7 @@ post "/upload" do
   return erb "The file was successfully uploaded!"
 end
 
-get "/test" do
-  erb :Home
-end
-
-get "/home" do
+get "/" do
   erb :Home
 
   files = []

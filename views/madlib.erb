@@ -3,11 +3,13 @@
 <form action="/<%=@name%>" method="POST">
 <%i=0%>
 <% @words.each do |word| %>
+<br>
 <%message = "message#{i}"%>
 <label>Enter a <%= word%>: </label>
 <input type="text" name="<%=message%>">
 <%i+=1%>
 <% end %> 
+<br>
 <button type="submit">Submit!</button>
 </form>
 
